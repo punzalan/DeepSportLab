@@ -1,48 +1,14 @@
 # DeepSportLab
 
-Continuously tested on Linux, MacOS and Windows: [![Build Status](https://travis-ci.org/vita-epfl/openpifpaf.svg?branch=master)](https://travis-ci.org/vita-epfl/openpifpaf)<br />
-[CVPR 2019 paper](http://openaccess.thecvf.com/content_CVPR_2019/html/Kreiss_PifPaf_Composite_Fields_for_Human_Pose_Estimation_CVPR_2019_paper.html)
-<!-- [arxiv.org/abs/1903.06593](https://arxiv.org/abs/1903.06593) -->
 
-> PifPaf: Composite Fields for Human Pose Estimation
+> DeepSportLab: a Unified Framework for BallDetection, Player Instance Segmentationand Pose Estimation in Team Sports Scenes
 >
-> We propose a new bottom-up method for multi-person 2D human pose
-> estimation that is particularly well suited for urban mobility such as self-driving cars
-> and delivery robots. The new method, PifPaf, uses a Part Intensity Field (PIF) to
-> localize body parts and a Part Association Field (PAF) to associate body parts with each other to form
-> full human poses.
-> Our method outperforms previous methods at low resolution and in crowded,
-> cluttered and occluded scenes
-> thanks to (i) our new composite field PAF encoding fine-grained information and (ii) the choice of Laplace loss for regressions which incorporates a notion of uncertainty.
-> Our architecture is based on a fully
-> convolutional, single-shot, box-free design.
-> We perform on par with the existing
-> state-of-the-art bottom-up method on the standard COCO keypoint task
-> and produce state-of-the-art results on a modified COCO keypoint task for
-> the transportation domain.
-
-
-# Example
-
-![example image with overlaid pose predictions](https://github.com/vita-epfl/openpifpaf/raw/main/docs/coco/000000081988.jpg.predictions.png)
-
-Image credit: "[Learning to surf](https://www.flickr.com/photos/fotologic/6038911779/in/photostream/)" by fotologic which is licensed under [CC-BY-2.0].<br />
-Created with:
-```sh
-pip3 install openpifpaf matplotlib
-python3 -m openpifpaf.predict coco/000000081988.jpg --image-output
-```
-
-
-# [Guide](https://vita-epfl.github.io/openpifpaf/intro.html)
-
-Continue to our __[OpenPifPaf Guide](https://vita-epfl.github.io/openpifpaf/intro.html)__.
-
-
-[CC-BY-2.0]: https://creativecommons.org/licenses/by/2.0/
-
+> This paper presents a unified framework to(i)locate the ball,(ii)predict the pose, and(iii)segment the instance mask of players in team sports scenes.  Those problems are ofhigh interest in automated sports analytics, production, and broadcast. A common prac-tice is to individually solve each problem by exploiting universal state-of-the-art models,e.g., Panoptic-DeepLab for player segmentation. In addition to the increased complexityresulting from the multiplication of single-task models, the use of the off-the-shelf mod-els also impedes the performance due to the complexity and specificity of the team sportsscenes, such as strong occlusion and motion blur.  To circumvent those limitations, ourpaper proposes to train a single model that simultaneously predicts the ball and the playermask and pose by combining the part intensity fields and the spatial embeddings princi-ples. Part intensity fields provide the ball and player location, as well as player joints lo-cation. Spatial embeddings are then exploited to associate player instance pixels to theirrespective player center, but also to group player joints into skeletons.  We demonstratethe effectiveness of the proposed model on the DeepSport basketball dataset, achievingcomparable performance to the SoA models addressing each individual task separately.
 
 # Commercial License
 
-This software is available for licensing via the EPFL Technology Transfer
+Part of this software is available for licensing via the EPFL Technology Transfer
 Office (https://tto.epfl.ch/, info.tto@epfl.ch).
+
+The rest is available for licensing via the UCLouvain Technology Transfer
+Office (https://uclouvain.be/en/research/ltto, LTTO@uclouvain.be).
