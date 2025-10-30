@@ -282,6 +282,19 @@ try:
     import configparser
 except ImportError:
     import ConfigParser as configparser
+
+if not hasattr(configparser, "SafeConfigParser"):
+    class SafeConfigParser(configparser.ConfigParser):
+        def readfp(self, fp, filename=None):
+            # Maintain compatibility with Versioneer’s old API usage
+            return self.read_file(fp, source=filename)
+    configparser.SafeConfigParser = SafeConfigParser
+elif not hasattr(configparser.SafeConfigParser, "readfp"):
+    def _readfp(self, fp, filename=None):
+        return self.read_file(fp, source=filename)
+    configparser.SafeConfigParser.readfp = _readfp  # type: ignore[attr-defined]
+
+
 import errno
 import json
 import os
